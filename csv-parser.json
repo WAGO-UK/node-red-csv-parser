@@ -1,0 +1,2564 @@
+[
+    {
+        "id": "d9ddb9fc68720bac",
+        "type": "group",
+        "z": "30d53415ecf6e516",
+        "name": "Notifications",
+        "style": {
+            "fill": "#dbcbe7",
+            "label": true,
+            "color": "#ffffff"
+        },
+        "nodes": [
+            "719f7aaf4b256c97",
+            "2a615ba83a0d613c",
+            "7a70201dd1faf88b",
+            "23995c63e232cf3c",
+            "4f91cce60dcd70ac",
+            "e085d49e8df6b400",
+            "555574d705d440f5",
+            "d915b993fa92ebe3",
+            "c4e1f619d66ba831",
+            "14fec74356106482",
+            "6d226c6e0fa6611b",
+            "cd071fc1ff85aea4",
+            "83ac2a97771366b4",
+            "9cfa832b2a4b1d55",
+            "39c336e03ef47ccf"
+        ],
+        "x": 894,
+        "y": 59,
+        "w": 532,
+        "h": 322
+    },
+    {
+        "id": "719f7aaf4b256c97",
+        "type": "catch",
+        "z": "30d53415ecf6e516",
+        "g": "d9ddb9fc68720bac",
+        "name": "",
+        "scope": [
+            "55394ed65143f9cf"
+        ],
+        "uncaught": false,
+        "x": 970,
+        "y": 100,
+        "wires": [
+            [
+                "7a70201dd1faf88b"
+            ]
+        ]
+    },
+    {
+        "id": "2a615ba83a0d613c",
+        "type": "ui_toast",
+        "z": "30d53415ecf6e516",
+        "g": "d9ddb9fc68720bac",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1310,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "7a70201dd1faf88b",
+        "type": "function",
+        "z": "30d53415ecf6e516",
+        "g": "d9ddb9fc68720bac",
+        "name": "Error occured",
+        "func": "msg.topic = \"Error occured\"\nmsg.payload = \"Error msg: \" + msg.payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 100,
+        "wires": [
+            [
+                "2a615ba83a0d613c"
+            ]
+        ]
+    },
+    {
+        "id": "23995c63e232cf3c",
+        "type": "function",
+        "z": "30d53415ecf6e516",
+        "g": "d9ddb9fc68720bac",
+        "name": "Error occured",
+        "func": "msg.topic = \"Error occured\"\nmsg.payload = \"CSV file doesn't contain any datapoints or a file was not selected. Please try again.\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 140,
+        "wires": [
+            [
+                "2a615ba83a0d613c"
+            ]
+        ]
+    },
+    {
+        "id": "4f91cce60dcd70ac",
+        "type": "link in",
+        "z": "30d53415ecf6e516",
+        "g": "d9ddb9fc68720bac",
+        "name": "link in 2",
+        "links": [
+            "dabcfee57cd405cf"
+        ],
+        "x": 1005,
+        "y": 140,
+        "wires": [
+            [
+                "23995c63e232cf3c"
+            ]
+        ]
+    },
+    {
+        "id": "e085d49e8df6b400",
+        "type": "function",
+        "z": "30d53415ecf6e516",
+        "g": "d9ddb9fc68720bac",
+        "name": "File upload",
+        "func": "msg.topic = \"File upload\"\nvar d = new Date(msg.payload)\n\nif (msg.payload === \"OK\") {\n    msg.payload = \"File deleted successfully.\"\n} else {\n    msg.payload = \"File uploaded successfully at: \" +d.toTimeString()\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1110,
+        "y": 180,
+        "wires": [
+            [
+                "2a615ba83a0d613c"
+            ]
+        ]
+    },
+    {
+        "id": "555574d705d440f5",
+        "type": "link in",
+        "z": "30d53415ecf6e516",
+        "g": "d9ddb9fc68720bac",
+        "name": "link in 3",
+        "links": [
+            "c86d068635e93927"
+        ],
+        "x": 1005,
+        "y": 180,
+        "wires": [
+            [
+                "e085d49e8df6b400"
+            ]
+        ]
+    },
+    {
+        "id": "d915b993fa92ebe3",
+        "type": "link in",
+        "z": "30d53415ecf6e516",
+        "g": "d9ddb9fc68720bac",
+        "name": "link in 4",
+        "links": [
+            "ce69fcc13f91f089"
+        ],
+        "x": 1005,
+        "y": 220,
+        "wires": [
+            [
+                "c4e1f619d66ba831"
+            ]
+        ]
+    },
+    {
+        "id": "c4e1f619d66ba831",
+        "type": "function",
+        "z": "30d53415ecf6e516",
+        "g": "d9ddb9fc68720bac",
+        "name": "File upload",
+        "func": "msg.topic = \"Datapoint activation\"\nmsg.payload = \"Please select datapoint type before activating new modbus registers.\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1110,
+        "y": 220,
+        "wires": [
+            [
+                "2a615ba83a0d613c"
+            ]
+        ]
+    },
+    {
+        "id": "14fec74356106482",
+        "type": "link in",
+        "z": "30d53415ecf6e516",
+        "g": "d9ddb9fc68720bac",
+        "name": "link in 6",
+        "links": [
+            "384a0272fac8aca4"
+        ],
+        "x": 1005,
+        "y": 260,
+        "wires": [
+            [
+                "6d226c6e0fa6611b"
+            ]
+        ]
+    },
+    {
+        "id": "6d226c6e0fa6611b",
+        "type": "function",
+        "z": "30d53415ecf6e516",
+        "g": "d9ddb9fc68720bac",
+        "name": "Datapoints activated",
+        "func": "msg.topic = \"Datapoint activation\"\nmsg.payload = \"Datapoints activated successfully!\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 260,
+        "wires": [
+            [
+                "2a615ba83a0d613c"
+            ]
+        ]
+    },
+    {
+        "id": "cd071fc1ff85aea4",
+        "type": "link in",
+        "z": "30d53415ecf6e516",
+        "g": "d9ddb9fc68720bac",
+        "name": "link in 10",
+        "links": [
+            "b3e70ce09229f17b"
+        ],
+        "x": 1005,
+        "y": 300,
+        "wires": [
+            [
+                "83ac2a97771366b4"
+            ]
+        ]
+    },
+    {
+        "id": "83ac2a97771366b4",
+        "type": "function",
+        "z": "30d53415ecf6e516",
+        "g": "d9ddb9fc68720bac",
+        "name": "Datapoint list empty",
+        "func": "msg.topic = \"Datapoint activation\"\nmsg.payload = \"Selected file doesn't contain any datapoints.\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1130,
+        "y": 300,
+        "wires": [
+            [
+                "2a615ba83a0d613c"
+            ]
+        ]
+    },
+    {
+        "id": "9cfa832b2a4b1d55",
+        "type": "function",
+        "z": "30d53415ecf6e516",
+        "g": "d9ddb9fc68720bac",
+        "name": "Datapoints not activated",
+        "func": "msg.topic = \"Datapoint activation\"\nmsg.payload = \"Datapoints couldn't be activated. An error occured!\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1150,
+        "y": 340,
+        "wires": [
+            [
+                "2a615ba83a0d613c"
+            ]
+        ]
+    },
+    {
+        "id": "39c336e03ef47ccf",
+        "type": "link in",
+        "z": "30d53415ecf6e516",
+        "g": "d9ddb9fc68720bac",
+        "name": "link in 11",
+        "links": [
+            "8723620eb8694056"
+        ],
+        "x": 1005,
+        "y": 340,
+        "wires": [
+            [
+                "9cfa832b2a4b1d55"
+            ]
+        ]
+    },
+    {
+        "id": "5d075699d7aa5d2b",
+        "type": "group",
+        "z": "30d53415ecf6e516",
+        "name": "Upload File",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "3696af61.5b451",
+            "c86d068635e93927",
+            "ab27729b7966acc2"
+        ],
+        "x": 34,
+        "y": 39,
+        "w": 242,
+        "h": 122
+    },
+    {
+        "id": "4f6b87ae.7d3bb",
+        "type": "subflow",
+        "name": "List Files",
+        "info": "# List files\n\nWill list files in a directory.\n\nPath can be set in `msg.payload` or by setting the `DIRECTORY` environment variable.\n\nExtensions can be filtered by settings the `EXTENSIONS` environment variable to an Array of extensions.\n",
+        "category": "",
+        "in": [
+            {
+                "x": 80,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "cf0b484b.b70c9"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 840,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "13486428.bcfc4c",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "DIRECTORY",
+                "type": "str",
+                "value": ""
+            },
+            {
+                "name": "EXTENSIONS",
+                "type": "json",
+                "value": "[]"
+            }
+        ]
+    },
+    {
+        "id": "208379c0.81563e",
+        "type": "exec",
+        "z": "4f6b87ae.7d3bb",
+        "command": "ls",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 510,
+        "y": 60,
+        "wires": [
+            [
+                "13486428.bcfc4c"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "13486428.bcfc4c",
+        "type": "change",
+        "z": "4f6b87ae.7d3bb",
+        "name": "split and filter",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "(\t    $files := [$split(payload, '\\n')[$ != \"\"]];\t    $count($env('EXTENSIONS')) = 0 ? [$files] : [$files[$split($, '.')[-1] in $env('EXTENSIONS')]];\t)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cf0b484b.b70c9",
+        "type": "switch",
+        "z": "4f6b87ae.7d3bb",
+        "name": "",
+        "property": "$env('DIRECTORY')",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "empty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 210,
+        "y": 80,
+        "wires": [
+            [
+                "208379c0.81563e"
+            ],
+            [
+                "56426a5a.fbc44c"
+            ]
+        ]
+    },
+    {
+        "id": "56426a5a.fbc44c",
+        "type": "change",
+        "z": "4f6b87ae.7d3bb",
+        "name": "DIRECTORY",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "DIRECTORY",
+                "tot": "env"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 120,
+        "wires": [
+            [
+                "208379c0.81563e"
+            ]
+        ]
+    },
+    {
+        "id": "19ad2b6f.f11b85",
+        "type": "subflow",
+        "name": "FIle Upload",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [
+            {
+                "x": 1140,
+                "y": 280,
+                "wires": [
+                    {
+                        "id": "144a9c8f.af7e9b",
+                        "port": 0
+                    },
+                    {
+                        "id": "854a9fb8.a668a8",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "UPLOAD_DIR",
+                "type": "str",
+                "value": "."
+            },
+            {
+                "name": "EXTENSIONS",
+                "type": "json",
+                "value": "[]"
+            }
+        ],
+        "meta": {},
+        "color": "#DDAA99",
+        "outputLabels": [
+            "fileWritten"
+        ]
+    },
+    {
+        "id": "954c0325.f4f63",
+        "type": "http in",
+        "z": "19ad2b6f.f11b85",
+        "name": "",
+        "url": "/fileupload",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 440,
+        "wires": [
+            [
+                "7433a631.a7f58",
+                "faf9ee8.6642a1"
+            ]
+        ]
+    },
+    {
+        "id": "964d2a30.34e938",
+        "type": "http response",
+        "z": "19ad2b6f.f11b85",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 850,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "1617f361.5dac2d",
+        "type": "ui_template",
+        "z": "19ad2b6f.f11b85",
+        "group": "4178bf61.05d97",
+        "name": "Upload",
+        "order": 1,
+        "width": 6,
+        "height": 3,
+        "format": "<form id=\"upload_form\" enctype=\"multipart/form-data\" method=\"post\">\n    <input type=\"file\" name=\"file1\" id=\"file1\"><br>\n    <input type=\"button\" value=\"Upload File\" onclick=\"uploadFile()\">\n    <progress id=\"progressBar\" value=\"0\" max=\"100\" style=\"width:300px;\"></progress>\n    <p id=\"status\"></p>\n    <p id=\"loaded_n_total\"></p>\n</form>\n\n<script>\n    function _(el){\n    return document.getElementById(el);\n}\nfunction uploadFile(){\n    var file = _(\"file1\").files[0];\n    // alert(file.name+\" | \"+file.size+\" | \"+file.type);\n    var formdata = new FormData();\n    formdata.append(\"file1\", file);\n    var ajax = new XMLHttpRequest();\n    ajax.upload.addEventListener(\"progress\", progressHandler, false);\n    ajax.addEventListener(\"load\", completeHandler, false);\n    ajax.addEventListener(\"error\", errorHandler, false);\n    ajax.addEventListener(\"abort\", abortHandler, false);\n    ajax.open(\"POST\", \"/fileupload\");\n    ajax.send(formdata);\n}\nfunction progressHandler(event){\n    _(\"loaded_n_total\").innerHTML = \"Uploaded \"+event.loaded+\" bytes of \"+event.total;\n    var percent = (event.loaded / event.total) * 100;\n    _(\"progressBar\").value = Math.round(percent);\n    _(\"status\").innerHTML = Math.round(percent)+\"% uploaded... please wait\";\n}\nfunction completeHandler(event){\n    _(\"status\").innerHTML = event.target.responseText;\n    _(\"progressBar\").value = 0;\n}\nfunction errorHandler(event){\n    _(\"status\").innerHTML = \"Upload Failed\";\n}\nfunction abortHandler(event){\n    _(\"status\").innerHTML = \"Upload Aborted\";\n}\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 120,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ea605dad.7b36a8",
+        "type": "subflow:4f6b87ae.7d3bb",
+        "z": "19ad2b6f.f11b85",
+        "name": "",
+        "env": [
+            {
+                "name": "DIRECTORY",
+                "type": "env",
+                "value": "UPLOAD_DIR"
+            },
+            {
+                "name": "EXTENSIONS",
+                "type": "env",
+                "value": "EXTENSIONS"
+            }
+        ],
+        "x": 380,
+        "y": 140,
+        "wires": [
+            [
+                "b42b38bf.d5a548"
+            ]
+        ]
+    },
+    {
+        "id": "a425ba62.ff1df",
+        "type": "ui_dropdown",
+        "z": "19ad2b6f.f11b85",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "4178bf61.05d97",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 750,
+        "y": 140,
+        "wires": [
+            [
+                "62157c1a.4444bc"
+            ]
+        ]
+    },
+    {
+        "id": "bdb6a329.8574b",
+        "type": "link in",
+        "z": "19ad2b6f.f11b85",
+        "name": "refreshFileDropdown",
+        "links": [
+            "15ae2641.f1cc7a",
+            "be23c76f.4a3988"
+        ],
+        "x": 75,
+        "y": 140,
+        "wires": [
+            [
+                "f0813c91.8c7838"
+            ]
+        ]
+    },
+    {
+        "id": "51272d56.830874",
+        "type": "ui_button",
+        "z": "19ad2b6f.f11b85",
+        "name": "",
+        "group": "4178bf61.05d97",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Delete",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 110,
+        "y": 220,
+        "wires": [
+            [
+                "a0bbc93d.d6f6b8"
+            ]
+        ]
+    },
+    {
+        "id": "62157c1a.4444bc",
+        "type": "change",
+        "z": "19ad2b6f.f11b85",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "selectedFile",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7433a631.a7f58",
+        "type": "change",
+        "z": "19ad2b6f.f11b85",
+        "name": "getFile",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "$env('UPLOAD_DIR')  & '/' & req.files[0].originalname",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "req.files[0].buffer",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 360,
+        "wires": [
+            [
+                "63e6ebc1.1cc124"
+            ]
+        ]
+    },
+    {
+        "id": "10c1284a.0e3f98",
+        "type": "file",
+        "z": "19ad2b6f.f11b85",
+        "name": "",
+        "filename": "",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "x": 830,
+        "y": 340,
+        "wires": [
+            [
+                "144a9c8f.af7e9b"
+            ]
+        ]
+    },
+    {
+        "id": "af0d1f9b.6eb468",
+        "type": "inject",
+        "z": "19ad2b6f.f11b85",
+        "name": "",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "f0813c91.8c7838"
+            ]
+        ]
+    },
+    {
+        "id": "a0bbc93d.d6f6b8",
+        "type": "change",
+        "z": "19ad2b6f.f11b85",
+        "name": "getSelectedFile",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "$env('UPLOAD_DIR')  & '/' & $flowContext('selectedFile')",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Delete File ?",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 220,
+        "wires": [
+            [
+                "3e909d09.b8b5f2"
+            ]
+        ]
+    },
+    {
+        "id": "854a9fb8.a668a8",
+        "type": "file",
+        "z": "19ad2b6f.f11b85",
+        "name": "",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "delete",
+        "x": 830,
+        "y": 220,
+        "wires": [
+            [
+                "be23c76f.4a3988"
+            ]
+        ]
+    },
+    {
+        "id": "3e909d09.b8b5f2",
+        "type": "ui_toast",
+        "z": "19ad2b6f.f11b85",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "Cancel",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 470,
+        "y": 220,
+        "wires": [
+            [
+                "a33238b4.01cae"
+            ]
+        ]
+    },
+    {
+        "id": "a33238b4.01cae",
+        "type": "switch",
+        "z": "19ad2b6f.f11b85",
+        "name": "OK ?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "OK",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 630,
+        "y": 220,
+        "wires": [
+            [
+                "854a9fb8.a668a8"
+            ]
+        ]
+    },
+    {
+        "id": "b54a9427.62f75",
+        "type": "catch",
+        "z": "19ad2b6f.f11b85",
+        "name": "",
+        "scope": null,
+        "x": 120,
+        "y": 500,
+        "wires": [
+            [
+                "1a19fda8.e72fd2"
+            ]
+        ]
+    },
+    {
+        "id": "563135cc.7b97e4",
+        "type": "ui_toast",
+        "z": "19ad2b6f.f11b85",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 530,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "1a19fda8.e72fd2",
+        "type": "change",
+        "z": "19ad2b6f.f11b85",
+        "name": "getError",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "error.message",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 300,
+        "y": 500,
+        "wires": [
+            [
+                "563135cc.7b97e4"
+            ]
+        ]
+    },
+    {
+        "id": "be23c76f.4a3988",
+        "type": "link out",
+        "z": "19ad2b6f.f11b85",
+        "name": "refreshAfterDelete",
+        "links": [
+            "bdb6a329.8574b"
+        ],
+        "x": 1135,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "15ae2641.f1cc7a",
+        "type": "link out",
+        "z": "19ad2b6f.f11b85",
+        "name": "refreshAfterUpload",
+        "links": [
+            "bdb6a329.8574b"
+        ],
+        "x": 1135,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "faf9ee8.6642a1",
+        "type": "change",
+        "z": "19ad2b6f.f11b85",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "'File ' & req.files[0].originalname & ' uploaded.'",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 440,
+        "wires": [
+            [
+                "964d2a30.34e938"
+            ]
+        ]
+    },
+    {
+        "id": "f0813c91.8c7838",
+        "type": "delay",
+        "z": "19ad2b6f.f11b85",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 190,
+        "y": 140,
+        "wires": [
+            [
+                "ea605dad.7b36a8"
+            ]
+        ]
+    },
+    {
+        "id": "a5f544d.69b9bb8",
+        "type": "watch",
+        "z": "19ad2b6f.f11b85",
+        "name": "",
+        "files": "$(UPLOAD_DIR)",
+        "recursive": "",
+        "x": 160,
+        "y": 40,
+        "wires": [
+            [
+                "f0813c91.8c7838"
+            ]
+        ]
+    },
+    {
+        "id": "b42b38bf.d5a548",
+        "type": "change",
+        "z": "19ad2b6f.f11b85",
+        "name": "options",
+        "rules": [
+            {
+                "t": "set",
+                "p": "options",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 140,
+        "wires": [
+            [
+                "a425ba62.ff1df"
+            ]
+        ]
+    },
+    {
+        "id": "63e6ebc1.1cc124",
+        "type": "switch",
+        "z": "19ad2b6f.f11b85",
+        "name": "extensionAllowed ?",
+        "property": "$env('EXTENSIONS')",
+        "propertyType": "jsonata",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "$split(filename, '.')[-1]",
+                "vt": "jsonata"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 360,
+        "wires": [
+            [
+                "10c1284a.0e3f98"
+            ],
+            [
+                "e34d7e40.c64b5"
+            ]
+        ]
+    },
+    {
+        "id": "e34d7e40.c64b5",
+        "type": "function",
+        "z": "19ad2b6f.f11b85",
+        "name": "Error",
+        "func": "node.error(`Error: only ${env.get('EXTENSIONS')} files are allowed.`, msg)\n",
+        "outputs": 0,
+        "noerr": 0,
+        "x": 830,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "144a9c8f.af7e9b",
+        "type": "change",
+        "z": "19ad2b6f.f11b85",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1000,
+        "y": 340,
+        "wires": [
+            [
+                "15ae2641.f1cc7a"
+            ]
+        ]
+    },
+    {
+        "id": "4178bf61.05d97",
+        "type": "ui_group",
+        "name": "File management",
+        "tab": "ffb0f85808c3e52a",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ffb0f85808c3e52a",
+        "type": "ui_tab",
+        "name": "File management",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3696af61.5b451",
+        "type": "subflow:19ad2b6f.f11b85",
+        "z": "30d53415ecf6e516",
+        "g": "5d075699d7aa5d2b",
+        "name": "",
+        "env": [
+            {
+                "name": "UPLOAD_DIR",
+                "value": "./files",
+                "type": "str"
+            },
+            {
+                "name": "EXTENSIONS",
+                "value": "[\"csv\"]",
+                "type": "json"
+            }
+        ],
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "c86d068635e93927"
+            ]
+        ]
+    },
+    {
+        "id": "c86d068635e93927",
+        "type": "link out",
+        "z": "30d53415ecf6e516",
+        "g": "5d075699d7aa5d2b",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "769bb46925933594",
+            "555574d705d440f5",
+            "5fe05d3d14119e68"
+        ],
+        "x": 235,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "ab27729b7966acc2",
+        "type": "comment",
+        "z": "30d53415ecf6e516",
+        "g": "5d075699d7aa5d2b",
+        "name": "IMPORTANT",
+        "info": "Change directory and allowed formats here",
+        "x": 130,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "455469778bf729a9",
+        "type": "group",
+        "z": "30d53415ecf6e516",
+        "name": "List files in dropdown",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "695583d8c9e8d847",
+            "7303be4d9c3ca3eb",
+            "6bf5a1487adc3e55",
+            "5bcfd9691ffde5b9",
+            "1d8a967cb3c98dd6",
+            "769bb46925933594",
+            "1f4224b5cfeb4c75",
+            "0a2e540da718e806"
+        ],
+        "x": 34,
+        "y": 179,
+        "w": 812,
+        "h": 162
+    },
+    {
+        "id": "695583d8c9e8d847",
+        "type": "subflow:4f6b87ae.7d3bb",
+        "z": "30d53415ecf6e516",
+        "g": "455469778bf729a9",
+        "name": "",
+        "env": [
+            {
+                "name": "DIRECTORY",
+                "value": "./files",
+                "type": "str"
+            },
+            {
+                "name": "EXTENSIONS",
+                "value": "[\"csv\"]",
+                "type": "json"
+            }
+        ],
+        "x": 240,
+        "y": 260,
+        "wires": [
+            [
+                "5bcfd9691ffde5b9"
+            ]
+        ]
+    },
+    {
+        "id": "7303be4d9c3ca3eb",
+        "type": "ui_dropdown",
+        "z": "30d53415ecf6e516",
+        "g": "455469778bf729a9",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "c8f9ceaeade1eb7e",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "topicType": "str",
+        "className": "",
+        "x": 540,
+        "y": 260,
+        "wires": [
+            [
+                "6bf5a1487adc3e55",
+                "0a2e540da718e806"
+            ]
+        ]
+    },
+    {
+        "id": "6bf5a1487adc3e55",
+        "type": "change",
+        "z": "30d53415ecf6e516",
+        "g": "455469778bf729a9",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "selectedFile",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5bcfd9691ffde5b9",
+        "type": "change",
+        "z": "30d53415ecf6e516",
+        "g": "455469778bf729a9",
+        "name": "options",
+        "rules": [
+            {
+                "t": "set",
+                "p": "options",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 260,
+        "wires": [
+            [
+                "7303be4d9c3ca3eb"
+            ]
+        ]
+    },
+    {
+        "id": "1d8a967cb3c98dd6",
+        "type": "inject",
+        "z": "30d53415ecf6e516",
+        "g": "455469778bf729a9",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 95,
+        "y": 260,
+        "wires": [
+            [
+                "695583d8c9e8d847"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "769bb46925933594",
+        "type": "link in",
+        "z": "30d53415ecf6e516",
+        "g": "455469778bf729a9",
+        "name": "link in 1",
+        "links": [
+            "c86d068635e93927",
+            "79ac81e1949cfd29"
+        ],
+        "x": 95,
+        "y": 220,
+        "wires": [
+            [
+                "1f4224b5cfeb4c75"
+            ]
+        ]
+    },
+    {
+        "id": "1f4224b5cfeb4c75",
+        "type": "change",
+        "z": "30d53415ecf6e516",
+        "g": "455469778bf729a9",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 145,
+        "y": 220,
+        "wires": [
+            [
+                "695583d8c9e8d847"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "0a2e540da718e806",
+        "type": "link out",
+        "z": "30d53415ecf6e516",
+        "g": "455469778bf729a9",
+        "name": "link out 18",
+        "mode": "link",
+        "links": [
+            "2ea1fe1ade5f21e8"
+        ],
+        "x": 635,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "c8f9ceaeade1eb7e",
+        "type": "ui_group",
+        "name": "Read registers from file",
+        "tab": "ffb0f85808c3e52a",
+        "order": 2,
+        "disp": true,
+        "width": 17,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "61199ffb274561c2",
+        "type": "group",
+        "z": "30d53415ecf6e516",
+        "name": "Activate selected datapoints",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "079be0eab803be22",
+            "148e18154ad87f9c",
+            "ce69fcc13f91f089",
+            "46bf6d6a94a54e17",
+            "384a0272fac8aca4",
+            "dc1dfdf32242a82a",
+            "97fb09934d2c3226",
+            "b3e70ce09229f17b",
+            "297590561de804bb",
+            "8723620eb8694056"
+        ],
+        "x": 34,
+        "y": 759,
+        "w": 762,
+        "h": 182
+    },
+    {
+        "id": "079be0eab803be22",
+        "type": "ui_button",
+        "z": "30d53415ecf6e516",
+        "g": "61199ffb274561c2",
+        "name": "",
+        "group": "c8f9ceaeade1eb7e",
+        "order": 20,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "ACTIVATE",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 800,
+        "wires": [
+            [
+                "148e18154ad87f9c"
+            ]
+        ]
+    },
+    {
+        "id": "148e18154ad87f9c",
+        "type": "switch",
+        "z": "30d53415ecf6e516",
+        "g": "61199ffb274561c2",
+        "name": "Check type",
+        "property": "datapoint_type",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 290,
+        "y": 800,
+        "wires": [
+            [
+                "97fb09934d2c3226"
+            ],
+            [
+                "ce69fcc13f91f089"
+            ]
+        ]
+    },
+    {
+        "id": "ce69fcc13f91f089",
+        "type": "link out",
+        "z": "30d53415ecf6e516",
+        "g": "61199ffb274561c2",
+        "name": "link out 4",
+        "mode": "link",
+        "links": [
+            "d915b993fa92ebe3"
+        ],
+        "x": 485,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "46bf6d6a94a54e17",
+        "type": "change",
+        "z": "30d53415ecf6e516",
+        "g": "61199ffb274561c2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "current_modbus_objects",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 300,
+        "y": 880,
+        "wires": [
+            [
+                "297590561de804bb"
+            ]
+        ]
+    },
+    {
+        "id": "384a0272fac8aca4",
+        "type": "link out",
+        "z": "30d53415ecf6e516",
+        "g": "61199ffb274561c2",
+        "name": "link out 5",
+        "mode": "link",
+        "links": [
+            "1344242da261d133",
+            "14fec74356106482",
+            "2ea1fe1ade5f21e8"
+        ],
+        "x": 755,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "dc1dfdf32242a82a",
+        "type": "switch",
+        "z": "30d53415ecf6e516",
+        "g": "61199ffb274561c2",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 670,
+        "y": 880,
+        "wires": [
+            [
+                "384a0272fac8aca4"
+            ],
+            [
+                "8723620eb8694056"
+            ]
+        ]
+    },
+    {
+        "id": "97fb09934d2c3226",
+        "type": "switch",
+        "z": "30d53415ecf6e516",
+        "g": "61199ffb274561c2",
+        "name": "Check modbus objects",
+        "property": "current_modbus_objects",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 320,
+        "y": 840,
+        "wires": [
+            [
+                "46bf6d6a94a54e17"
+            ],
+            [
+                "b3e70ce09229f17b"
+            ]
+        ]
+    },
+    {
+        "id": "b3e70ce09229f17b",
+        "type": "link out",
+        "z": "30d53415ecf6e516",
+        "g": "61199ffb274561c2",
+        "name": "link out 10",
+        "mode": "link",
+        "links": [
+            "cd071fc1ff85aea4"
+        ],
+        "x": 485,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "297590561de804bb",
+        "type": "function",
+        "z": "30d53415ecf6e516",
+        "g": "61199ffb274561c2",
+        "name": "NEW Build flex object",
+        "func": "\n// Declaration\nclass ModbusDatapoint {\n    /**\n* @param {string} name\n* @param {number} id\n* @param {number} fc\n* @param {number} address\n* @param {number} unitid\n* @param {number} quantity\n* @param {string} datatype\n* @param {string} description\n* @param {number} qos\n* @param {string} access\n*/\n    constructor(name, description, unit, id, qos, fc, address, unitid, quantity, datatype, access, offset) {\n        this.name = name;\n        this.description = description;\n        this.unit = unit;\n        this.fc = fc;\n        this.qos = qos;\n        this.id = id;\n        this.address = address;\n        this.unitid = unitid;\n        this.quantity = quantity;\n        this.datatype = datatype;\n        this.access = access;\n        this.offset = offset;\n        this.value = 0;\n        this.timestamp = Date.now()\n    }\n}\n\nfunction toModbusObject(datapoint){\n    var name,\n        fc,\n        address,\n        unitid,\n        quantity,\n        datatype,\n        desc,\n        objID,\n        qos,\n        access,\n        unit,\n        offset\n    \n    // Look for name\n    if (type == \"raw_inputs\"){\n        ('Description' in datapoint) ? name=`${datapoint.Name}-${datapoint.Description}` : name=\"undefined\";\n        ('Name' in datapoint) ? desc = datapoint.Name : desc = \"undefined\";\n    } else {\n        ('Name' in datapoint) ? name=datapoint.Name : name=\"undefined\";\n        ('Description' in datapoint) ? desc=datapoint.Description : desc=\"undefined\";\n    }\n    // Look for fc\n    ('FC' in datapoint) ? fc=datapoint.FC : fc=4;\n\n    // Look for address and set offset\n    ('Value Adr' in datapoint) ? address=datapoint['Value Adr'] : address=null;\n    offset = address - start\n\n    // Look for unitid - for now value fixed to 1\n    unitid = 1;\n\n    // Look for unit\n    ('Unit' in datapoint) ? unit=datapoint.Unit : unit=\"\";\n\n    // Look for ObjectID\n    ('ObjectID' in datapoint) ? objID=datapoint.ObjectID : objID=0;\n\n    // Look for QoS Adr\n    ('QoS Adr' in datapoint) ? qos = datapoint['QoS Adr'] : qos=0;\n\n    // Look for Access\n    ('Access' in datapoint) ? access=datapoint.Access : access=\"R/-\";\n\n    // Look for quantity\n    ('Datatype' in datapoint) ? datatype=datapoint.Datatype : datatype=\"WORD\";\n    quantity = global.get(`modbus_datatypes.${datatype}`) // check in dictionary number of bytes required for selected datatype\n\n\n    // create new ModbusDatapoint object\n    var mdp = new ModbusDatapoint(name, desc,unit, objID, qos, fc, address, unitid, quantity, datatype, access, offset)\n    return mdp\n}\n\nmsg.objects = []\n\n\n\n// 1. Get type\nconst type = flow.get('datapoint_type')\n// 2. Get detected objects from CSV file\nconst modbus_objects = flow.get('current_modbus_objects')\n// 3. Get starting address to create offsets\nconst start = modbus_objects[0]['Value Adr']\n// 3. Create empty array to hold new datapoints\nvar new_datapoints = []\n// 4. Loop through new objects and modify keys to match modbus node\ntry {\n    for (const o in modbus_objects) {\n        const dp = toModbusObject(modbus_objects[o])\n        new_datapoints.push(dp)\n    }\n    global.set(`datapoints.${type}`, new_datapoints)\n    msg.payload = true\n    return msg\n}\ncatch (error) {\n    msg.payload = false\n    return msg\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 880,
+        "wires": [
+            [
+                "dc1dfdf32242a82a"
+            ]
+        ]
+    },
+    {
+        "id": "8723620eb8694056",
+        "type": "link out",
+        "z": "30d53415ecf6e516",
+        "g": "61199ffb274561c2",
+        "name": "link out 11",
+        "mode": "link",
+        "links": [
+            "39c336e03ef47ccf"
+        ],
+        "x": 755,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "b224caa7dae3ed43",
+        "type": "group",
+        "z": "30d53415ecf6e516",
+        "name": "Datapoints breakdown from csv file",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "55394ed65143f9cf",
+            "b19827b72fbde44e",
+            "28acebad33d75596",
+            "5f258b1af811d0a1",
+            "4cac94eace3df8c7",
+            "dabcfee57cd405cf",
+            "addcced41895d5c8",
+            "ebb7bbfad8a1801f",
+            "6d2cfb7172adb446",
+            "2ea1fe1ade5f21e8",
+            "0101e13fdce1914d",
+            "349d38c4027719bb",
+            "f91dd056ce61da3e",
+            "730b59670be6a367",
+            "c53286f8c1dd63f5",
+            "54bac5e520e1d974",
+            "48c5911b4f09583f",
+            "2246de95b27c5995",
+            "44f56559326909b3",
+            "3407778d068bf355",
+            "e74b2ef7de7686c9"
+        ],
+        "x": 44,
+        "y": 399,
+        "w": 1382,
+        "h": 322
+    },
+    {
+        "id": "55394ed65143f9cf",
+        "type": "file in",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "",
+        "filename": "payload",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 460,
+        "y": 500,
+        "wires": [
+            [
+                "addcced41895d5c8"
+            ]
+        ]
+    },
+    {
+        "id": "b19827b72fbde44e",
+        "type": "function",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "Append file location",
+        "func": "msg.topic = msg.payload\nmsg.payload = `./files/${msg.payload}`\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 500,
+        "wires": [
+            [
+                "55394ed65143f9cf"
+            ]
+        ]
+    },
+    {
+        "id": "28acebad33d75596",
+        "type": "ui_template",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "group": "c8f9ceaeade1eb7e",
+        "name": "",
+        "order": 5,
+        "width": 15,
+        "height": 6,
+        "format": "<div ng-bind-html=\"msg.payload\"></div>\n\n<style>\n    table {\n        width: 100%\n    }\n    tr {\n    text-align: center;\n    }\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1340,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5f258b1af811d0a1",
+        "type": "csv",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "",
+        "sep": ";",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 710,
+        "y": 500,
+        "wires": [
+            [
+                "4cac94eace3df8c7",
+                "3407778d068bf355",
+                "6d2cfb7172adb446"
+            ]
+        ]
+    },
+    {
+        "id": "4cac94eace3df8c7",
+        "type": "switch",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "Content?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 860,
+        "y": 500,
+        "wires": [
+            [
+                "ebb7bbfad8a1801f"
+            ],
+            [
+                "349d38c4027719bb"
+            ]
+        ]
+    },
+    {
+        "id": "dabcfee57cd405cf",
+        "type": "link out",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "link out 2",
+        "mode": "link",
+        "links": [
+            "4f91cce60dcd70ac"
+        ],
+        "x": 1065,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "addcced41895d5c8",
+        "type": "switch",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 590,
+        "y": 500,
+        "wires": [
+            [
+                "5f258b1af811d0a1"
+            ]
+        ]
+    },
+    {
+        "id": "ebb7bbfad8a1801f",
+        "type": "template",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<h1>Detected content of the file</h1>\n\n<b>Number of datapoints:</b> {{payload.length}}\n\n<table>\n    <tr>\n        <th>ID</th>\n        <th>Name</th>\n        <th>Description</th>\n        <th>Unit</th>\n        <th>Datatype</th>\n        <th>Address</th>\n        <th>FC</th>\n    </tr>    \n{{#payload}}\n<tr>\n    <td>{{ObjectID}}</td>\n    <td>{{Name}}</td>\n    <td>{{Description}}</td>\n    <td>{{Unit}}</td>\n    <td>{{Datatype}}</td>\n    <td>{{Value Adr}}</td>\n    <td>{{FC}}</td>\n</tr>\n{{/payload}}\n</table>\n\n",
+        "output": "str",
+        "x": 1200,
+        "y": 480,
+        "wires": [
+            [
+                "28acebad33d75596"
+            ]
+        ]
+    },
+    {
+        "id": "6d2cfb7172adb446",
+        "type": "change",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "current_modbus_objects",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2ea1fe1ade5f21e8",
+        "type": "link in",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "link in 7",
+        "links": [
+            "384a0272fac8aca4",
+            "0a2e540da718e806"
+        ],
+        "x": 85,
+        "y": 500,
+        "wires": [
+            [
+                "f91dd056ce61da3e"
+            ]
+        ]
+    },
+    {
+        "id": "0101e13fdce1914d",
+        "type": "template",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<h1>Detected content of the file</h1>\n\n<b>Number of datapoints:</b> {{payload.length}}\n\n<table>\n    <tr>\n        <th>ID</th>\n        <th>Name</th>\n        <th>Description</th>\n        <th>Unit</th>\n        <th>Datatype</th>\n        <th>Address</th>\n        <th>FC</th>\n    </tr>     \n    <tr>\n        <td colspan=\"7\">No data available!</td>\n    </tr>\n</table>\n\n",
+        "output": "str",
+        "x": 1200,
+        "y": 520,
+        "wires": [
+            [
+                "28acebad33d75596"
+            ]
+        ]
+    },
+    {
+        "id": "349d38c4027719bb",
+        "type": "rbe",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "",
+        "func": "rbei",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": false,
+        "property": "topic",
+        "topi": "topic",
+        "x": 990,
+        "y": 520,
+        "wires": [
+            [
+                "0101e13fdce1914d",
+                "dabcfee57cd405cf"
+            ]
+        ]
+    },
+    {
+        "id": "f91dd056ce61da3e",
+        "type": "function",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "function 1",
+        "func": "msg.payload = flow.get('selectedFile')\n\nif (msg.payload != undefined){\n    return [msg,null] \n } else  return [null,msg] ;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 145,
+        "y": 500,
+        "wires": [
+            [
+                "b19827b72fbde44e"
+            ],
+            [
+                "c53286f8c1dd63f5"
+            ]
+        ],
+        "icon": "node-red/arrow-in.svg",
+        "l": false
+    },
+    {
+        "id": "730b59670be6a367",
+        "type": "inject",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 580,
+        "wires": [
+            [
+                "f91dd056ce61da3e"
+            ]
+        ]
+    },
+    {
+        "id": "c53286f8c1dd63f5",
+        "type": "link out",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "link out 19",
+        "mode": "link",
+        "links": [
+            "54bac5e520e1d974"
+        ],
+        "x": 195,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "54bac5e520e1d974",
+        "type": "link in",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "link in 14",
+        "links": [
+            "c53286f8c1dd63f5"
+        ],
+        "x": 1105,
+        "y": 560,
+        "wires": [
+            [
+                "0101e13fdce1914d"
+            ]
+        ]
+    },
+    {
+        "id": "48c5911b4f09583f",
+        "type": "ui_text",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "group": "c8f9ceaeade1eb7e",
+        "order": 18,
+        "width": 6,
+        "height": 1,
+        "name": "Status display",
+        "label": "",
+        "format": "{{msg.status}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 1200,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "2246de95b27c5995",
+        "type": "function",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "(Optional) Write status",
+        "func": "if (msg.payload){\n    var current_datapoints = global.get(`datapoints.${msg.payload}`)\n\n    if (Object.keys(current_datapoints).length > 0){\n        msg.status = \"Old datapoints will be overwritten!\"\n    } else {\n        msg.status = \"No existing datapoints of this type. \"\n    }\n}\nelse {\n    msg.status = \"Datapoint type not detected.\"\n}\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 680,
+        "wires": [
+            [
+                "48c5911b4f09583f"
+            ]
+        ]
+    },
+    {
+        "id": "44f56559326909b3",
+        "type": "ui_dropdown",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Select category",
+        "group": "c8f9ceaeade1eb7e",
+        "order": 19,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Inputs",
+                "value": "inputs",
+                "type": "str"
+            },
+            {
+                "label": "Outputs",
+                "value": "outputs",
+                "type": "str"
+            },
+            {
+                "label": "Raw inputs",
+                "value": "raw_inputs",
+                "type": "str"
+            },
+            {
+                "label": "Alarms",
+                "value": "alarms",
+                "type": "str"
+            },
+            {
+                "label": "Virtuals",
+                "value": "virtuals",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 1040,
+        "y": 640,
+        "wires": [
+            [
+                "e74b2ef7de7686c9"
+            ]
+        ]
+    },
+    {
+        "id": "3407778d068bf355",
+        "type": "function",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "(Optional) Check file name",
+        "func": "var t = msg.topic.toLowerCase()\n\nif (t.includes('raw_input')) {\n    msg.payload = 'raw_inputs'\n}\nelse if (t.includes ('input')) {\n    msg.payload = 'inputs'\n}\nelse if (t.includes('output')) {\n    msg.payload = 'outputs'\n}\nelse if (t.includes('alarm')) {\n    msg.payload = 'alarms'\n}\nelse if (t.includes('virtual')) {\n    msg.payload = 'virtuals'\n}\nelse {\n    msg.payload = null\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 640,
+        "wires": [
+            [
+                "44f56559326909b3",
+                "2246de95b27c5995"
+            ]
+        ]
+    },
+    {
+        "id": "e74b2ef7de7686c9",
+        "type": "change",
+        "z": "30d53415ecf6e516",
+        "g": "b224caa7dae3ed43",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "datapoint_type",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1220,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8e86a3da88c94fdd",
+        "type": "group",
+        "z": "30d53415ecf6e516",
+        "name": "Files management (dictionaries)",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "366488a66dfb493a",
+            "e0860198e7c240bf",
+            "792d1d20225ba645",
+            "9f6e4c03fe43cfb5",
+            "4c154bc399889ba3",
+            "f2cb0fb30403059d",
+            "984073b1f9363b6f",
+            "32fd5097228c75dd",
+            "e5e017a35323e630",
+            "1344242da261d133",
+            "c33805b22115ad9d",
+            "31337113ab1ab45e",
+            "d5afe3d86c0fb553",
+            "11190a851f47cecd"
+        ],
+        "x": 34,
+        "y": 959,
+        "w": 1332,
+        "h": 269.5
+    },
+    {
+        "id": "366488a66dfb493a",
+        "type": "inject",
+        "z": "30d53415ecf6e516",
+        "g": "8e86a3da88c94fdd",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 1120,
+        "wires": [
+            [
+                "9f6e4c03fe43cfb5",
+                "11190a851f47cecd"
+            ]
+        ]
+    },
+    {
+        "id": "e0860198e7c240bf",
+        "type": "change",
+        "z": "30d53415ecf6e516",
+        "g": "8e86a3da88c94fdd",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "datapoints",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1080,
+        "wires": [
+            [
+                "f2cb0fb30403059d",
+                "d5afe3d86c0fb553"
+            ]
+        ]
+    },
+    {
+        "id": "792d1d20225ba645",
+        "type": "catch",
+        "z": "30d53415ecf6e516",
+        "g": "8e86a3da88c94fdd",
+        "name": "no file",
+        "scope": [
+            "9f6e4c03fe43cfb5"
+        ],
+        "uncaught": false,
+        "x": 310,
+        "y": 1040,
+        "wires": [
+            [
+                "31337113ab1ab45e"
+            ]
+        ]
+    },
+    {
+        "id": "9f6e4c03fe43cfb5",
+        "type": "file in",
+        "z": "30d53415ecf6e516",
+        "g": "8e86a3da88c94fdd",
+        "name": "",
+        "filename": "./dictionaries/modbus_datapoints.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 410,
+        "y": 1120,
+        "wires": [
+            [
+                "4c154bc399889ba3"
+            ]
+        ]
+    },
+    {
+        "id": "4c154bc399889ba3",
+        "type": "json",
+        "z": "30d53415ecf6e516",
+        "g": "8e86a3da88c94fdd",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 630,
+        "y": 1120,
+        "wires": [
+            [
+                "e0860198e7c240bf"
+            ]
+        ]
+    },
+    {
+        "id": "f2cb0fb30403059d",
+        "type": "file",
+        "z": "30d53415ecf6e516",
+        "g": "8e86a3da88c94fdd",
+        "name": "",
+        "filename": "./dictionaries/modbus_datapoints.json",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1190,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "984073b1f9363b6f",
+        "type": "ui_button",
+        "z": "30d53415ecf6e516",
+        "g": "8e86a3da88c94fdd",
+        "name": "Reset",
+        "group": "4178bf61.05d97",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Reset MODBUS Datapoints",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "Are you sure you want to continue?",
+        "payloadType": "str",
+        "topic": "You are about to delete all datapoints!",
+        "topicType": "str",
+        "x": 310,
+        "y": 1080,
+        "wires": [
+            [
+                "e5e017a35323e630"
+            ]
+        ]
+    },
+    {
+        "id": "32fd5097228c75dd",
+        "type": "inject",
+        "z": "30d53415ecf6e516",
+        "g": "8e86a3da88c94fdd",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 345,
+        "y": 1000,
+        "wires": [
+            [
+                "31337113ab1ab45e"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "e5e017a35323e630",
+        "type": "ui_toast",
+        "z": "30d53415ecf6e516",
+        "g": "8e86a3da88c94fdd",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "Cancel",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 395,
+        "y": 1080,
+        "wires": [
+            [
+                "31337113ab1ab45e"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "1344242da261d133",
+        "type": "link in",
+        "z": "30d53415ecf6e516",
+        "g": "8e86a3da88c94fdd",
+        "name": "link in 5",
+        "links": [
+            "384a0272fac8aca4"
+        ],
+        "x": 775,
+        "y": 1040,
+        "wires": [
+            [
+                "c33805b22115ad9d"
+            ]
+        ]
+    },
+    {
+        "id": "c33805b22115ad9d",
+        "type": "change",
+        "z": "30d53415ecf6e516",
+        "g": "8e86a3da88c94fdd",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "datapoints",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 1040,
+        "wires": [
+            [
+                "f2cb0fb30403059d"
+            ]
+        ]
+    },
+    {
+        "id": "31337113ab1ab45e",
+        "type": "function",
+        "z": "30d53415ecf6e516",
+        "g": "8e86a3da88c94fdd",
+        "name": "Initialise datapoint structure",
+        "func": "if (msg.payload != \"Cancel\"){\nvar inputs = [],\n    outputs = [],\n    raw_inputs = [],\n    virtuals = [],\n    alarms = []\n\nmsg.payload = {\n    'inputs': inputs, \n    'outputs': outputs, \n    'raw_inputs': raw_inputs, \n    'virtuals': virtuals, \n    'alarms': alarms\n}\n\nreturn msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 1080,
+        "wires": [
+            [
+                "e0860198e7c240bf"
+            ]
+        ]
+    },
+    {
+        "id": "d5afe3d86c0fb553",
+        "type": "debug",
+        "z": "30d53415ecf6e516",
+        "g": "8e86a3da88c94fdd",
+        "name": "debug 14",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "11190a851f47cecd",
+        "type": "exec",
+        "z": "30d53415ecf6e516",
+        "g": "8e86a3da88c94fdd",
+        "command": "mkdir -p ./files",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 340,
+        "y": 1180,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    }
+]
