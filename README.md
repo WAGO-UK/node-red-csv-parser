@@ -33,6 +33,6 @@ a global variable.</p>
 ![csv-parser screenshot](/src/csv-parser.png)
 
 # Links
-Flow uses 'File upload and delete in Dashboard' example, shared by 'natcl' 
+Flow uses 'File upload and delete in Dashboard' example, shared by [@natcl](https://github.com/natcl)
 - [Github Link](https://gist.github.com/natcl/5805a1141b1212d2c55c1781b9dbd15b)
 - [Node-RED Flows Link](https://flows.nodered.org/flow/5805a1141b1212d2c55c1781b9dbd15b)
